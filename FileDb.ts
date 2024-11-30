@@ -1,8 +1,8 @@
 import { promises as fs } from 'fs';
 import {Message, MessageWithoutData} from "./types";
 
-
-const fileName = './db.json';
+let date;
+const fileName = `messages./${date}.txt`;
 let data: Message[] = [];
 
 const fileDb = {
@@ -18,7 +18,7 @@ const fileDb = {
         return data;
     },
     async addItem(item: MessageWithoutData) {
-        const date =  new Date().getDate().toString();
+        date =  new Date().toISOString();
         const message:Message = {date, ...item}
         data.push(message);
         await this.save();
