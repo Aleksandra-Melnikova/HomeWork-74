@@ -12,7 +12,7 @@ const run = async () => {
     if(fs.existsSync('./messages')){
         await fileDb.init();
     } else{
-        fs.writeFileSync('./messages', JSON.stringify([]));
+        fs.mkdir('./messages', (err) => {console.log(err)});
     }
 
     app.listen(port, () => {
